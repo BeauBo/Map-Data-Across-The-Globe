@@ -1,0 +1,32 @@
+$svgBackground: #efefef;
+$backgroundColor: #3987c9;
+$tooltipBackground: hsl(271, 100%, 50%);
+
+body, html{
+    margin: 0;
+    padding: 0;
+    background: $backgroundColor ;
+    text-align: center;
+}
+
+
+
+.country{
+    fill: $svgBackground;
+    stroke: $backgroundColor;
+    stroke-width: 0.5;
+    opacity: 0.9;
+}
+
+.tooltip{
+    position: absolute;
+    padding: 10px;
+    font-family: Tahoma;
+    font-size: 14px;
+    background: $tooltipBackground;
+    widows: 100px;
+    height: auto;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+}

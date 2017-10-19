@@ -1,0 +1,37 @@
+{
+  "name": "map-data-across-the-globe",
+  "version": "0.0.1",
+  "description": "freeCodeCamp D3 project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build",
+    "build": "webpack -d && webpack-dev-server --hot --inline --port $PORT --host $IP --public map-data-across-the-globe-beaubo0704.c9users.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeauBo/Map-Data-Across-The-Globe.git"
+  },
+  "author": "BeauBo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeauBo/Map-Data-Across-The-Globe/issues"
+  },
+  "homepage": "https://github.com/BeauBo/Map-Data-Across-The-Globe#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.2"
+  },
+  "dependencies": {
+    "d3": "^4.11.0",
+    "topojson": "^3.0.2"
+  }
+}
