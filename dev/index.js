@@ -61,7 +61,35 @@ d3.json( urlMeteorites, (error, data) => {
     var maxMass = d3.max(meteorites, d => Number(d.properties.mass))
     var minMass = d3.min(meteorites, d => Number(d.properties.mass))
     
-   console.log(meteorites)
+   //console.log(meteorites)
+   
+   // sort radius of circles by mass
+    var mass = []
+    
+        meteorites.map((d) => {
+        mass.push(Number(d.properties.mass))
+    })
+    
+    var thresholdScott   = d3.thresholdScott(mass, minMass, maxMass) 
+    
+    var histogram = d3.histogram()
+                          .domain([minMass, maxMass])
+                          .thresholds(thresholdScott)
+    var thresholdsAll = histogram(mass)
+    
+    thresholdsAll = thresholdsAll.filter(d => d.length > 0);
+                                       
+    
+    var thresholds = []
+    thresholdsAll.map((d) => {
+        thresholds.push(d.x1)
+    })
+    
+    var raidus = [2, 10, 15, 20, 25, 30, 35, 40]
+    
+    var sortMass = d3.scaleThreshold()
+                    .domain(thresholds)
+                    .range(raidus)
 
     // add circles to the map
     
@@ -73,16 +101,7 @@ d3.json( urlMeteorites, (error, data) => {
         .append('circle')
         .attr('cx', (d) => {return projection([d.properties.reclong,d.properties.reclat])[0]})
         .attr('cy', (d) => {return projection([d.properties.reclong,d.properties.reclat])[1]})
-        .attr('r', (d) => {
-                if( Number(d.properties.mass) <= 200000) return 2;
-                else if ( Number(d.properties.mass) <= 400000) return 10;
-                else if ( Number(d.properties.mass) <= 600000) return 15;
-                else if ( Number(d.properties.mass) <= 800000) return 20;
-                else if ( Number(d.properties.mass) <= 1200000) return 25;
-                else if ( Number(d.properties.mass) <= 2200000) return 30;
-                else if ( Number(d.properties.mass) <= 4200000) return 35;
-                else if ( Number(d.properties.mass) <= 23000000) return 40;
-        })
+        .attr('r', (d) => { return sortMass(d.properties.mass)})
         .attr('fill-opacity', (d) => {
             
             if( Number(d.properties.mass) <= 200000) return 1;
